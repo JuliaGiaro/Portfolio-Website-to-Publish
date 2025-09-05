@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylegraphical.css">
     <link rel="stylesheet" href="mediaqueries.css">
 </head>
     <body>
@@ -12,10 +12,11 @@
             <div class= "logo"> Julia Giaro</div>
             <div>
                 <ul class= "nav-links"> 
+                    <li><a href="#project_categories">My Work</a> </li>
                     <li><a href="#about">About</a> </li>
                     <li><a href="#experience">Experience</a> </li>
-                    <li><a href="#projects">Projects</a> </li>
                     <li><a href="#contact">Contact</a> </li>
+                    <li><a href= "index.html"> Back to Frontend </li>
                 </ul>
             </div>
         </nav>
@@ -28,10 +29,46 @@
                     <span></span>
                 </div>
                 <div class="menu-links">
+                    <li><a href="#project_categories" onclick="toggleMenu()">My Work</a> </li>
                     <li><a href="#about" onclick="toggleMenu()">About</a> </li>
                     <li><a href="#experience" onclick="toggleMenu()">Experience</a> </li>
-                    <li><a href="#projects" onclick="toggleMenu()">Projects</a> </li>
                     <li><a href="#contact" onclick="toggleMenu()">Contact</a> </li>
+                    <li><a href= "index.html"> Back to Frontend </li>
                 </div>
             </div>
         </nav>
+        <section id= "project_categories">
+            <div class = "container">
+                <div class= "card" onclick="location.href= './#all_projects'">
+                    
+                    <img src="./assets/project-1.png">
+                    <div class="card_head">
+                        Illustrations
+                    </div>
+                </div>
+                <div class= "card">
+                    <img src="./assets/project-1.png">
+                    <div class="card_head">
+                        Logotypes
+                    </div>
+                </div>
+                <div class= "card">
+                    <img src="./assets/project-1.png">
+                    <div class="card_head">
+                        Photography
+                    </div>
+                </div>
+                <div class= "card">
+                    <img src="./assets/project-1.png">
+                    <div class="card_head">
+                        Canvas Art
+                    </div>
+                </div>
+                <div class= "card">
+                    <img src="./assets/project-1.png">
+                    <div class="card_head">
+                        Fashion Pieces
+                    </div>
+                </div>
+            </div>
+        </section>
