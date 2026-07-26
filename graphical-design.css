@@ -1,0 +1,380 @@
+  :root {
+    --fabric: #e8e2d6;
+    --thread: #1a1a1a;
+    --accent: #c8503c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--fabric);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: var(--thread);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: .4;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.05) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.04) 0 1px, transparent 1px 3px);
+  }
+
+  header { padding: 3rem 4vw 0; position: relative; z-index: 2; }
+
+  .selvage {
+    font-size: .7rem; letter-spacing: .35em; text-transform: uppercase;
+    opacity: .5; margin-bottom: 2rem;
+  }
+  .home-link { color: inherit; text-decoration: none; }
+  .home-link:hover { text-decoration: underline; }
+
+  h1 {
+    font-size: clamp(3.5rem, 13vw, 11rem);
+    line-height: .82; letter-spacing: -.04em;
+    font-weight: 800; text-transform: uppercase;
+  }
+  h1 .thin { font-weight: 200; display: block; }
+
+  .instruction {
+    margin-top: 1.5rem; font-size: .8rem; letter-spacing: .18em;
+    text-transform: uppercase; opacity: .55;
+  }
+
+  #layout { display: block; width: 100%; height: auto; }
+
+  .piece { cursor: pointer; }
+
+  /* the underlayer: category colour, revealed when the piece lifts */
+  .under { transition: none; }
+
+  /* woven texture on the underlayer, drawn as a pattern */
+  .piece .top {
+    fill: var(--fabric);
+    transition: fill 300ms ease;
+  }
+  .piece:hover .top { fill: #ded7c8; }
+
+  .piece .chalk {
+    fill: none; stroke: var(--thread); stroke-width: 1.5;
+    stroke-dasharray: 6 5; opacity: .45;
+  }
+
+  /* the cut line draws itself around the shape on hover */
+  .piece .cut {
+    fill: none; stroke: var(--accent); stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: var(--len); stroke-dashoffset: var(--len);
+    transition: stroke-dashoffset 550ms cubic-bezier(.4,0,.2,1);
+  }
+  .piece:hover .cut { stroke-dashoffset: 0; }
+
+  .piece .label {
+    font-size: 15px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; fill: var(--thread);
+    pointer-events: none; transition: fill 400ms ease;
+  }
+  .piece .count {
+    font-size: 10px; letter-spacing: .1em; fill: var(--thread);
+    opacity: .5; pointer-events: none; transition: fill 400ms ease, opacity 400ms ease;
+  }
+
+  .grain { stroke: var(--thread); stroke-width: 1; opacity: .3; fill: none;
+           transition: stroke 400ms ease; }
+
+  /* the lifted top layer slides away and rotates slightly */
+  .top-layer {
+    transition: transform 800ms cubic-bezier(.34,.01,.2,1), opacity 800ms ease;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .piece.opened .top-layer {
+    transform: translate(40px, -90px) rotate(-6deg);
+    opacity: 0;
+  }
+
+  /* once opened, labels flip to light so they read on the colour */
+  .piece.opened .label { fill: #fdfbf7; }
+  .piece.opened .count { fill: #fdfbf7; opacity: .7; }
+  .piece.opened .grain { stroke: #fdfbf7; opacity: .35; }
+
+
+  /* ---- sewing stage ---- */
+  #sew-stage {
+    position: fixed; inset: 0; z-index: 40;
+    background: #e8e2d6;
+    display: none;
+    align-items: center; justify-content: center;
+    flex-direction: column;
+  }
+  #sew-stage.on { display: flex; }
+
+  #sew-stage::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    opacity: .4;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.05) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.04) 0 1px, transparent 1px 3px);
+  }
+
+  #sew-caption {
+    position: absolute; top: 8vh; left: 0; right: 0; text-align: center;
+    font-size: .75rem; letter-spacing: .3em; text-transform: uppercase;
+    opacity: 0; transition: opacity 500ms ease; color: #1a1a1a;
+  }
+  #sew-caption.show { opacity: .55; }
+
+  #sew-svg { width: min(88vw, 620px); height: auto; }
+
+  .sew-piece {
+    transform-box: fill-box; transform-origin: center;
+    transition: transform 1100ms cubic-bezier(.34,.02,.2,1);
+  }
+
+  /* seams draw themselves along each joined edge */
+  .seam {
+    fill: none; stroke: #f2ede3; stroke-width: 2.2;
+    stroke-dasharray: 7 6; stroke-linecap: round;
+    opacity: .9;
+  }
+
+  /* the finished hat, then the photo */
+  #reveal-photo {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 900ms ease;
+  }
+  #reveal-photo.show { opacity: 1; pointer-events: auto; }
+
+  #portrait-wrap { position: relative; width: min(80vw, 420px); }
+
+  #portrait {
+    width: 100%; display: block; border-radius: 4px;
+    background: #cfc6b4;
+  }
+
+  /* the assembled hat flies onto the head */
+  #flying-hat {
+    position: absolute;
+    width: 66%; left: 17%; top: -12%;
+    transition: transform 1100ms cubic-bezier(.25,.8,.3,1);
+    transform: translateY(-75vh) rotate(-12deg) scale(1.35);
+    will-change: transform;
+  }
+  #flying-hat.landed { transform: translateY(0) rotate(0deg) scale(1); }
+
+  #about-copy {
+    position: absolute; bottom: 6vh; left: 0; right: 0;
+    text-align: center; padding: 0 8vw; color: #1a1a1a;
+    opacity: 0; transition: opacity 700ms ease 600ms;
+  }
+  #about-copy.show { opacity: 1; }
+  #about-copy h2 {
+    font-size: clamp(1.8rem, 5vw, 3rem); text-transform: uppercase;
+    font-weight: 800; letter-spacing: -.02em;
+  }
+  #about-copy p {
+    margin: .8rem auto 0; max-width: 46ch; line-height: 1.6;
+    font-size: .95rem; opacity: .75;
+  }
+
+  #sew-close {
+    position: absolute; top: 2rem; right: 4vw; z-index: 3;
+    background: none; border: 1px solid rgba(26,26,26,.3);
+    color: #1a1a1a; padding: .7rem 1.4rem; font-size: .7rem;
+    letter-spacing: .2em; text-transform: uppercase; cursor: pointer;
+    font-family: inherit;
+  }
+  #sew-close:hover { background: rgba(26,26,26,.07); }
+
+  #sew-trigger {
+    margin: 0 4vw 4rem; background: #1a1a1a; border: none;
+    color: #e8e2d6; padding: 1rem 2rem; font-size: .72rem;
+    letter-spacing: .22em; text-transform: uppercase; cursor: pointer;
+    font-family: inherit; display: none;
+  }
+  #sew-trigger.show { display: inline-block; }
+  #sew-trigger:hover { background: #000; }
+
+  footer {
+    padding: 2rem 4vw 4rem; font-size: .7rem; letter-spacing: .2em;
+    text-transform: uppercase; opacity: .4;
+  }
+
+  #reset {
+    margin: 0 4vw 3rem; background: none; border: 1px solid rgba(26,26,26,.3);
+    color: var(--thread); padding: .8rem 1.6rem; font-size: .7rem;
+    letter-spacing: .2em; text-transform: uppercase; cursor: pointer;
+    font-family: inherit; opacity: 0; pointer-events: none;
+    transition: opacity 300ms ease;
+  }
+  #reset.show { opacity: 1; pointer-events: auto; }
+  #reset:hover { background: rgba(26,26,26,.06); }
+
+  /* project panel takes the category colour */
+  #panel {
+    position: fixed; inset: 0; z-index: 20;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 4rem 6vw; color: #fdfbf7;
+    transform: translateY(100%);
+    transition: transform 600ms cubic-bezier(.4,0,.2,1);
+    background: var(--thread);
+  }
+  #panel.open { transform: translateY(0); }
+
+  #panel h2 {
+    font-size: clamp(2.5rem, 8vw, 6rem); line-height: .9;
+    text-transform: uppercase; letter-spacing: -.03em; font-weight: 800;
+  }
+  #panel p { margin-top: 1.5rem; max-width: 48ch; line-height: 1.6; opacity: .85; }
+
+  #close {
+    position: absolute; top: 2rem; right: 4vw;
+    background: none; border: 1px solid rgba(253,251,247,.45);
+    color: #fdfbf7; padding: .7rem 1.4rem; font-size: .7rem;
+    letter-spacing: .2em; text-transform: uppercase; cursor: pointer;
+    font-family: inherit;
+  }
+  #close:hover { background: rgba(253,251,247,.12); }
+  /* ============================================================
+     LEVEL 2 — category grid (e.g. all logotypes)
+     ============================================================ */
+  .stage {
+    position: fixed; inset: 0; z-index: 50;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 600ms cubic-bezier(.4,0,.2,1);
+  }
+  .stage.open { transform: translateY(0); }
+
+  /* weave texture — coarse at category level */
+  .stage::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.11) 0 1px, transparent 1px 4px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, transparent 1px 4px);
+  }
+
+  /* fine weave — project level, "zoomed into the fibres" */
+  .stage.fine::before {
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.16) 0 2px, transparent 2px 7px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.10) 0 2px, transparent 2px 7px),
+      repeating-linear-gradient(45deg, rgba(0,0,0,.05) 0 1px, transparent 1px 5px);
+  }
+
+  .stage-head {
+    position: relative; z-index: 2;
+    padding: 4rem 4vw 2rem;
+    color: #fdfbf7;
+  }
+  .stage-head .kicker {
+    font-size: .65rem; letter-spacing: .3em; text-transform: uppercase;
+    opacity: .6; margin-bottom: 1rem;
+  }
+  .stage-head h2 {
+    font-size: clamp(2.5rem, 9vw, 6.5rem); line-height: .88;
+    text-transform: uppercase; letter-spacing: -.03em; font-weight: 800;
+  }
+  .stage-head .blurb {
+    margin-top: 1.2rem; max-width: 52ch; line-height: 1.65;
+    opacity: .82; font-size: .95rem;
+  }
+
+  .back {
+    position: absolute; top: 2rem; right: 4vw; z-index: 5;
+    background: none; border: 1px solid rgba(253,251,247,.4);
+    color: #fdfbf7; padding: .7rem 1.4rem; font-size: .7rem;
+    letter-spacing: .2em; text-transform: uppercase; cursor: pointer;
+    font-family: inherit;
+  }
+  .back:hover { background: rgba(253,251,247,.12); }
+
+  /* tight masonry, no gaps */
+  .grid {
+    position: relative; z-index: 2;
+    columns: 3; column-gap: 0;
+    padding: 0 0 6rem;
+  }
+  @media (max-width: 900px) { .grid { columns: 2; } }
+  @media (max-width: 560px) { .grid { columns: 1; } }
+
+  .card {
+    position: relative;
+    break-inside: avoid;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .card .plate {
+    width: 100%;
+    display: block;
+    background: #cfc6b4;
+  }
+
+  /* hover: text overlay + mosaic of the project's images
+     gradient (not a flat fill) so the mosaic preview shows through
+     above the caption rather than being hidden behind it */
+  .card .veil {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(20,16,14,.92) 0%, rgba(20,16,14,.55) 40%, rgba(20,16,14,0) 75%);
+    opacity: 0;
+    transition: opacity 300ms ease;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 1.2rem;
+    line-height: 1.5;
+  }
+  .card:hover .veil { opacity: 1; }
+
+  .card .veil h3 {
+    color: #fdfbf7; font-size: 1.05rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em;
+    position: relative; z-index: 2;
+  }
+  .card .veil p {
+    color: rgba(253,251,247,.8); font-size: .78rem; margin-top: .3rem;
+    position: relative; z-index: 2;
+  }
+
+  /* the mosaic that assembles inside the tile on hover — a preview
+     grid of the project's own images, stretched to fully cover the
+     card so the reader gets a collage instead of the plain thumbnail.
+     Rows/columns don't need to divide evenly; see mosaicFor() in the
+     script, which spans the last image over any leftover columns. */
+  .mosaic {
+    position: absolute; inset: 0;
+    display: grid; grid-auto-rows: 1fr;
+    gap: 2px;
+    opacity: 0;
+    transition: opacity 350ms ease;
+  }
+  .card:hover .mosaic { opacity: 1; }
+
+  .mosaic div, .mosaic img {
+    width: 100%; height: 100%;
+    background: #b8b0a0;
+    object-fit: cover;
+    display: block;
+    transform: scale(.82);
+    opacity: 0;
+    animation: tile-in 400ms cubic-bezier(.34,1.2,.5,1) forwards;
+  }
+  .card:hover .mosaic div,
+  .card:hover .mosaic img { animation-play-state: running; }
+
+  @keyframes tile-in {
+    to { transform: scale(1); opacity: 1; }
+  }
+
+

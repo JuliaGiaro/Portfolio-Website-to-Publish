@@ -4,7 +4,7 @@
 
 *{
     margin: 0;
-    padding: 0;
+    
     
 }
 /*TODO: add background images and some kind of site effect */
@@ -13,71 +13,154 @@ body {
     font-family: "Lexend", sans-serif;
     background-color: #000;
 }
-.projects{
-    margin: 0;
-    min-height: 100vh;
-    background: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.li{
+    text-decoration: none;
+    cursor:pointer
 }
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10vmin;
-    overflow: hidden;
-    transform: skew(5deg);
+.li:hover{
+    text-decoration: none;
+    color:white;
+
 }
-.card {
-    flex: 1;
-    transition: all 1s ease-in-out;
-    height: 75vmin;
-    position: relative;
-
-.card_head {
-    color: black;
-    background: rgba(255, 30, 173, 0.75);
-    padding: 0.5em;
-    transform: rotate(-90deg);
-    transform-origin: 0% 0%;
-    transition: all 0.5s ease-in-out;
-    min-width: 100%;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    font-size: 1em;
-    white-space: nowrap;
-}
-
-
-
-&:hover {
-    flex-grow: 10;
-.card_head{
-    text-align: center;
-    top: calc(100% - 2em);
+.viewbutton{
+    font-weight: 600;
     color: white;
-    background: rgba(0, 0, 0, 0.5);
-    font-size: 2em;
-    transform: rotate(0deg) skew(-5deg);
+    transition: all 300ms ease;
+    padding: 1rem;
+    width: 17rem;
+    border-radius: 1rem;
+    background-color:rgba(0, 0, 0, 60%);
+    border-color: rgba(0, 0, 0, 60%) ;
 }
-img{
-    filter:none;
+section{
+    padding-top: 4vh;
+    height:96vh;
+    margin: 0 10rem;
+    box-sizing: border-box;
+    min-height: fit-content;
 }
+
+#portfolio {
+    min-height: 100vh;
+    background: rgb(0, 0, 0);
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 2px;
 }
+.project {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #F2DAD7;
+    overflow: hidden;
 }
-img {
+
+.project img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all 1s ease-in-out;
-    filter: grayscale(100%);
+    object-position: center;
+    opacity: 0.9;
+    transition: transform 0.4s ease;
+}
+.project:hover .project__image {
+    transform: scale(1.05);
 }
 
-    
+.grid__title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    bottom: 0;
+    font-weight: 100;
+    font-size: 0.8em;
+    z-index: 3;
+    text-transform: uppercase;
+    color: #474545;
+    letter-spacing: 2px;
+}
 
+.project:hover .grid__overlay {
+    transform: translateY(0%);
+    background:rgba(0, 0, 0, 60%) ;
+}
+
+.grid__overlay {
+    background: rgba(218, 196, 194, 0.9);
+    height: 100%;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    position: relative;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    transform: translateY(101%);
+    transition: all 0.3s ease-in-out;
+}
+.button {
+    background: none;
+    outline: none;
+    font-weight: 100;
+    letter-spacing: 2px;
+    border: 1px solid white;
+    color: white;
+    text-transform: uppercase;
+    padding: 10px;
+}
+.button:hover {
+    transition: all 0.3s ease-in-out;
+    background: white;
+    color: #D1A39E;
+    transform: scale(1.05);
+}
+
+
+
+
+.overlay {
+    position: fixed;
+    background: rgba(71, 69, 69, 0.7);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    z-index: 3;
+}
+.overlay.open {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.overlay__inner {
+    background: white;
+    width: 700px;
+    padding: 20px;
+    position: relative;
+    opacity: 1;
+}
+
+.close {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    background: none;
+    outline: 0;
+    color: #474545;
+    border: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.close:hover {
+    color: #D1A39E;
+}
 
 
 html {
@@ -86,15 +169,23 @@ html {
 
 p {
     color: rgb(236, 234, 234);
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    padding: 1em 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 3;
 }
 /* TODO: Change text color to match background image */ 
-
+.image__gridview{
+    width: 100%;
+    height: 100px;
+}
 
 /* Transition */
 
-a, .btn {
-    transition: all 300ms ease;
-}
+
 
 /* Desktop Nav */
 
@@ -176,7 +267,7 @@ a:hover{
     padding: 10px;
     text-align: center;
     font-size: 1.5rem;
-    color: rgb(251, 251, 251);
+    color: #474545;
     text-decoration: none;
     transition:all 0.3 ease-in-out;
 }
@@ -200,4 +291,40 @@ a:hover{
 
 .hamburger-icon span:first-child{
     transform: none;
+}
+.section__text__p2{
+    color:rgb(255, 255, 255) ;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    cursor: default;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+    flex: 50%;
+    padding: 0 4px;
+}
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+}
+
+footer{
+    height: 26vh;
+    margin: 0 1rem;
+}
+footer p{
+    position: static;
+    width: auto;
+    text-transform: none;
+    letter-spacing: normal;
+    text-align: center;
+    cursor: default;
+    color: rgb(236, 234, 234);
 }

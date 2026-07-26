@@ -39,7 +39,14 @@
     .about-containers{
         margin-top: 0;
     }
+    #portfolio{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, minmax(280px, auto));
+    }
 }@media screen and (max-width:600px){
+    .links{
+        color:magenta;
+    }
     #contact, footer{
         height: 40vh;
     }
@@ -87,5 +94,9 @@
     }
     .text-container{
         text-align: justify;
+    }
+    #portfolio{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(8, minmax(280px, auto));
     }
 }

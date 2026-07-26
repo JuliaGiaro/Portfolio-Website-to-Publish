@@ -1,74 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="stylegraphical.css">
-    <link rel="stylesheet" href="mediaqueries.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pattern — reveal prototype</title>
+<link rel="stylesheet" href="graphical-design.css">
 </head>
-    <body>
-        <nav id="desktop-nav"> 
-            <div class= "logo"> Julia Giaro</div>
-            <div>
-                <ul class= "nav-links"> 
-                    <li><a href="#project_categories">My Work</a> </li>
-                    <li><a href="#about">About</a> </li>
-                    <li><a href="#experience">Experience</a> </li>
-                    <li><a href="#contact">Contact</a> </li>
-                    <li><a href= "index.html"> Back to Frontend </li>
-                </ul>
-            </div>
-        </nav>
-        <nav id="hamburger-nav">
-            <div class= "logo"> Julia Giaro</div>
-            <div class="hamburger-menu">
-                <div class= hamburger-icon onclick="toggleMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="menu-links">
-                    <li><a href="#project_categories" onclick="toggleMenu()">My Work</a> </li>
-                    <li><a href="#about" onclick="toggleMenu()">About</a> </li>
-                    <li><a href="#experience" onclick="toggleMenu()">Experience</a> </li>
-                    <li><a href="#contact" onclick="toggleMenu()">Contact</a> </li>
-                    <li><a href= "index.html"> Back to Frontend </li>
-                </div>
-            </div>
-        </nav>
-        <section id= "project_categories">
-            <div class = "container">
-                <div class= "card" onclick="location.href= './#all_projects'">
-                    
-                    <img src="./assets/project-1.png">
-                    <div class="card_head">
-                        Illustrations
-                    </div>
-                </div>
-                <div class= "card">
-                    <img src="./assets/project-1.png">
-                    <div class="card_head">
-                        Logotypes
-                    </div>
-                </div>
-                <div class= "card">
-                    <img src="./assets/project-1.png">
-                    <div class="card_head">
-                        Photography
-                    </div>
-                </div>
-                <div class= "card">
-                    <img src="./assets/project-1.png">
-                    <div class="card_head">
-                        Canvas Art
-                    </div>
-                </div>
-                <div class= "card">
-                    <img src="./assets/project-1.png">
-                    <div class="card_head">
-                        Fashion Pieces
-                    </div>
-                </div>
-            </div>
-        </section>
+<body>
+
+<header>
+  <div class="selvage"><a href="index.html" class="home-link">Julia Giaro — Graphic Design</a></div>
+  <h1>Cut<span class="thin">to shape</span></h1>
+  <div class="instruction">Four pieces — click to cut</div>
+</header>
+
+<svg id="layout" viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- weave texture reused on every underlayer -->
+    <pattern id="weave" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="4" fill="none"/>
+      <line x1="0" y1="0" x2="0" y2="4" stroke="rgba(0,0,0,.12)" stroke-width="1"/>
+      <line x1="0" y1="0" x2="4" y2="0" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <line x1="18" y1="0" x2="18" y2="620" stroke="#1a1a1a" stroke-width="1" opacity=".25"/>
+  <line x1="982" y1="0" x2="982" y2="620" stroke="#1a1a1a" stroke-width="1" opacity=".25"/>
+
+  <!-- LOGOTYPES -->
+  <g class="piece" data-color="#b8442f"
+     data-title="Logotypes" data-cat="logotypes"
+     data-body="Identity work for paying clients and student organisations. Guldtummen's prize logo, later printed on the physical award. Artmed AB. Two wine label commissions. Logo and typography for SexIT, FlashIT, HelgIT and the Computer Science cooking group.">
+    <path class="under" fill="#b8442f" d="M 130 250 A 160 160 0 0 1 450 250 Q 290 230 130 250 Z"/>
+    <path class="under" fill="url(#weave)" d="M 130 250 A 160 160 0 0 1 450 250 Q 290 230 130 250 Z"/>
+    <g class="top-layer">
+      <path class="top" d="M 130 250 A 160 160 0 0 1 450 250 Q 290 230 130 250 Z"/>
+      <path class="chalk" d="M 130 250 A 160 160 0 0 1 450 250 Q 290 230 130 250 Z"/>
+    </g>
+    <path class="cut" d="M 130 250 A 160 160 0 0 1 450 250 Q 290 230 130 250 Z"/>
+    <line class="grain" x1="290" y1="130" x2="290" y2="235"/>
+    <path class="grain" d="M 284 138 L 290 126 L 296 138"/>
+    <path class="grain" d="M 284 227 L 290 239 L 296 227"/>
+    <text class="label" x="200" y="195">Logotypes</text>
+    <text class="count" x="200" y="215">Crown — cut 1 of 2</text>
+  </g>
+
+  <!-- ILLUSTRATION -->
+  <g class="piece" data-color="#2f6b5e"
+     data-title="Illustration" data-cat="illustration"
+     data-body="Hand-drawn and vector illustration, including the Guldtummen prize graphic and event material for student organisations.">
+    <path class="under" fill="#2f6b5e" d="M 130 285 Q 290 265 450 285 A 160 160 0 0 1 130 285 Z"/>
+    <path class="under" fill="url(#weave)" d="M 130 285 Q 290 265 450 285 A 160 160 0 0 1 130 285 Z"/>
+    <g class="top-layer">
+      <path class="top" d="M 130 285 Q 290 265 450 285 A 160 160 0 0 1 130 285 Z"/>
+      <path class="chalk" d="M 130 285 Q 290 265 450 285 A 160 160 0 0 1 130 285 Z"/>
+    </g>
+    <path class="cut" d="M 130 285 Q 290 265 450 285 A 160 160 0 0 1 130 285 Z"/>
+    <line class="grain" x1="290" y1="300" x2="290" y2="405"/>
+    <path class="grain" d="M 284 308 L 290 296 L 296 308"/>
+    <path class="grain" d="M 284 397 L 290 409 L 296 397"/>
+    <text class="label" x="200" y="350">Illustration</text>
+    <text class="count" x="200" y="370">Crown — cut 2 of 2</text>
+  </g>
+
+  <!-- PHOTOGRAPHY -->
+  <g class="piece" data-color="#3a4a7c"
+     data-title="Photography" data-cat="photography"
+     data-body="Commissioned photography alongside personal work. Trained under nature photographer Piotr Malczewski at Galeria Fotografii.">
+    <path class="under" fill="#3a4a7c" d="M 520 60 Q 760 40 940 62 L 918 200 Q 750 180 542 200 Z"/>
+    <path class="under" fill="url(#weave)" d="M 520 60 Q 760 40 940 62 L 918 200 Q 750 180 542 200 Z"/>
+    <g class="top-layer">
+      <path class="top" d="M 520 60 Q 760 40 940 62 L 918 200 Q 750 180 542 200 Z"/>
+      <path class="chalk" d="M 520 60 Q 760 40 940 62 L 918 200 Q 750 180 542 200 Z"/>
+    </g>
+    <path class="cut" d="M 520 60 Q 760 40 940 62 L 918 200 Q 750 180 542 200 Z"/>
+    <line class="grain" x1="730" y1="80" x2="730" y2="170"/>
+    <path class="grain" d="M 724 88 L 730 76 L 736 88"/>
+    <path class="grain" d="M 724 162 L 730 174 L 736 162"/>
+    <text class="label" x="560" y="128">Photography</text>
+    <text class="count" x="560" y="148">Side band — cut 1</text>
+  </g>
+
+  <!-- FASHION -->
+  <g class="piece" data-color="#a86420"
+     data-title="Fashion" data-cat="fashion"
+     data-body="Garment construction and pattern work. This layout is a bucket hat: a crown split in two, a side band and a brim.">
+    <path class="under" fill="#a86420" d="M 500 250 Q 730 215 950 250 L 950 430 Q 730 395 500 430 Z"/>
+    <path class="under" fill="url(#weave)" d="M 500 250 Q 730 215 950 250 L 950 430 Q 730 395 500 430 Z"/>
+    <g class="top-layer">
+      <path class="top" d="M 500 250 Q 730 215 950 250 L 950 430 Q 730 395 500 430 Z"/>
+      <path class="chalk" d="M 500 250 Q 730 215 950 250 L 950 430 Q 730 395 500 430 Z"/>
+    </g>
+    <path class="cut" d="M 500 250 Q 730 215 950 250 L 950 430 Q 730 395 500 430 Z"/>
+    <line class="grain" x1="725" y1="300" x2="725" y2="385"/>
+    <path class="grain" d="M 719 308 L 725 296 L 731 308"/>
+    <path class="grain" d="M 719 377 L 725 389 L 731 377"/>
+    <text class="label" x="540" y="330">Fashion</text>
+    <text class="count" x="540" y="350">Brim — cut on fold</text>
+  </g>
+
+  <text x="60" y="480" font-size="11" letter-spacing="2" opacity=".35" fill="#1a1a1a">BUCKET HAT · 4 PIECES · CUT ON FOLD WHERE MARKED</text>
+  <line x1="60" y1="495" x2="940" y2="495" stroke="#1a1a1a" stroke-width="1" opacity=".15" stroke-dasharray="8 6"/>
+</svg>
+
+<button id="reset">Reverse the cut</button>
+
+<button id="sew-trigger">Sew the pieces together</button>
+
+<div id="sew-stage">
+  <button id="sew-close">Close</button>
+  <div id="sew-caption">Joining the seams</div>
+
+  <svg id="sew-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="weave2" width="4" height="4" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="0" x2="0" y2="4" stroke="rgba(0,0,0,.13)" stroke-width="1"/>
+        <line x1="0" y1="0" x2="4" y2="0" stroke="rgba(255,255,255,.09)" stroke-width="1"/>
+      </pattern>
+    </defs>
+
+    <!-- BRIM: wide ellipse, sits behind and below -->
+    <g class="sew-piece" id="sp-brim">
+      <path fill="#a86420" d="M 200 196 C 96 196 30 214 30 232 C 30 250 96 266 200 266 C 304 266 370 250 370 232 C 370 214 304 196 200 196 Z"/>
+      <path fill="url(#weave2)" d="M 200 196 C 96 196 30 214 30 232 C 30 250 96 266 200 266 C 304 266 370 250 370 232 C 370 214 304 196 200 196 Z"/>
+    </g>
+
+    <!-- SIDE BAND: tapered wall from crown down to brim -->
+    <g class="sew-piece" id="sp-band">
+      <path fill="#3a4a7c" d="M 108 120 L 92 218 C 92 236 308 236 308 218 L 292 120 C 292 136 108 136 108 120 Z"/>
+      <path fill="url(#weave2)" d="M 108 120 L 92 218 C 92 236 308 236 308 218 L 292 120 C 292 136 108 136 108 120 Z"/>
+    </g>
+
+    <!-- CROWN half 2: lower half-moon of the top -->
+    <g class="sew-piece" id="sp-crown-b">
+      <path fill="#2f6b5e" d="M 108 120 C 108 136 292 136 292 120 C 292 112 108 112 108 120 Z"/>
+      <path fill="url(#weave2)" d="M 108 120 C 108 136 292 136 292 120 C 292 112 108 112 108 120 Z"/>
+    </g>
+
+    <!-- CROWN half 1: domed top -->
+    <g class="sew-piece" id="sp-crown-a">
+      <path fill="#b8442f" d="M 108 120 C 108 62 148 40 200 40 C 252 40 292 62 292 120 C 292 112 108 112 108 120 Z"/>
+      <path fill="url(#weave2)" d="M 108 120 C 108 62 148 40 200 40 C 252 40 292 62 292 120 C 292 112 108 112 108 120 Z"/>
+    </g>
+
+    <!-- seams along the joins -->
+    <path class="seam" id="seam-1" d="M 108 120 C 108 112 292 112 292 120"/>
+    <path class="seam" id="seam-2" d="M 108 120 C 108 136 292 136 292 120"/>
+    <path class="seam" id="seam-3" d="M 92 218 C 92 236 308 236 308 218"/>
+  </svg>
+
+  <div id="reveal-photo">
+    <div id="portrait-wrap">
+      <img id="portrait" alt="Julia Giaro" src="profile-pic.jpg">
+      <svg id="flying-hat" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#a86420" d="M 200 196 C 96 196 30 214 30 232 C 30 250 96 266 200 266 C 304 266 370 250 370 232 C 370 214 304 196 200 196 Z"/>
+        <path fill="#3a4a7c" d="M 108 120 L 92 218 C 92 236 308 236 308 218 L 292 120 C 292 136 108 136 108 120 Z"/>
+        <path fill="#2f6b5e" d="M 108 120 C 108 136 292 136 292 120 C 292 112 108 112 108 120 Z"/>
+        <path fill="#b8442f" d="M 108 120 C 108 62 148 40 200 40 C 252 40 292 62 292 120 C 292 112 108 112 108 120 Z"/>
+        <path fill="none" stroke="#f2ede3" stroke-width="2.2" stroke-dasharray="7 6" opacity=".85" d="M 108 120 C 108 112 292 112 292 120"/>
+        <path fill="none" stroke="#f2ede3" stroke-width="2.2" stroke-dasharray="7 6" opacity=".85" d="M 92 218 C 92 236 308 236 308 218"/>
+      </svg>
+    </div>
+    <div id="about-copy">
+      <h2>About</h2>
+      <p>Interaction designer and software engineer based in Gothenburg. Four pieces, one hat.</p>
+    </div>
+  </div>
+</div>
+
+<footer>Prototype — cut, lift, reveal, sew</footer>
+
+<!-- level 2: category grid -->
+<div class="stage" id="stage-cat">
+  <button class="back" data-close="stage-cat">Back</button>
+  <div class="stage-head">
+    <div class="kicker" id="cat-kicker"></div>
+    <h2 id="cat-title"></h2>
+    <p class="blurb" id="cat-blurb"></p>
+  </div>
+  <div class="grid" id="cat-grid"></div>
+</div>
+
+<!-- level 3: single project -->
+<div class="stage fine" id="stage-proj" style="z-index:60">
+  <button class="back" data-close="stage-proj">Back</button>
+  <div class="stage-head">
+    <div class="kicker" id="proj-kicker"></div>
+    <h2 id="proj-title"></h2>
+    <p class="blurb" id="proj-blurb"></p>
+  </div>
+  <div class="grid" id="proj-grid"></div>
+</div>
+
+<script>
+
+/* ================================================================
+   EDIT HERE — all content lives in this one object.
+
+   categories[].projects[] :
+     title   — shown on the card and at project level
+     oneline — the single sentence that appears on hover
+     text    — the longer process writeup, project level only
+     shape   — tile aspect ratio: 'tall' | 'wide' | 'square'
+     images  — filenames. The first is the card image; all of them
+               form the hover mosaic and the project-level grid.
+               Leave [] and placeholders are drawn instead.
+   ================================================================ */
+const DATA = {
+  logotypes: {
+    title: "Logotypes",
+    color: "#b8442f",
+    blurb: "Logotypes made for student organisations or private clients in either Photoshop, Illustrator or Procreate",
+    projects: [
+      {
+        title: "Guldtummen",
+        oneline: "Prize logo for Gothenburgs students price awarded to a grand supporter of the towns students. Used as PR and later printed as the physical award.",
+        text: "Commissioned to design the prize graphic for Guldtummen 2022. The mark had to work at award-trophy scale and in single-colour print, so the construction was kept to flat shapes with no fine detail. It was later used as the print on the physical prize itself.",
+        shape: "tall",
+        images: ["assets/posters/Guldtummen.webp", "assets/Logotyper/guldtummen.png"]
+      },
+      {
+        title: "Artmed AB",
+        oneline: "Identity for a medical and dental consultancy.",
+        text: "A logo for a consultancy working across general medicine, dentistry and alternative medicine. The brief needed something that read as clinical without feeling cold, and that held up small on documents and signage.",
+        shape: "square",
+        images: ["assets/Logotyper/artmed.png"]
+      },
+      {
+        title: "Wine Labels",
+        oneline: "Two label logotypes for a private client.",
+        text: "Two wine label commissions for a private client. Label work is a constraint problem — a curved surface, a fixed footprint, and legibility on a shelf at arm's length.",
+        shape: "wide",
+        images: ["assets/Logotyper/Winelogo1.jpg"]
+      },
+      {
+        title: "SexIT",
+        oneline: "Logotype and typography for the student organisation. Created in Illustrator.",
+        text: "The organisation's logotype and typographic system. Three elements from the original — the wings, the scarf and the inverted cross — have been carried through by every designer who came after me, each in their own version. I did not write a specification for it; it just held up well enough that people kept using it.",
+        shape: "tall",
+        images: ["assets/Logotyper/Sexit_smurf.png", "assets/Logotyper/Sexit_Hoodie.jpg", "assets/Logotyper/Sexit_marke.png", "assets/Logotyper/Sexit_logga.png", "assets/Logotyper/zoomSexit.png"]
+      },
+      {
+        title: "FlashIT",
+        oneline: "Identity for the photography society.",
+        text: "Logo and typography for FlashIT, the photography society I later ran as president.",
+        shape: "square",
+        images: ["assets/Logotyper/flashit märke orig new.png", "assets/Logotyper/flshmrk.png", "assets/Logotyper/flashit logo.png"]
+      },
+      {
+        title: "HelgIT",
+        oneline: "Merchandise logo for T-shirts and hats.",
+        text: "A logo built specifically for garment printing — limited colours, heavy weight, and legible on fabric at a distance.",
+        shape: "wide",
+        images: ["assets/Logotyper/Helgit_logo.png"]
+      },
+      {
+        title: "Tofsen",
+        oneline: "Co-redesigned the publication's logo.",
+        text: "Worked with another designer to redesign the logo for Chalmers Kårtidning Tofsen, the student paper I have written and produced content for since 2022.",
+        shape: "tall",
+        images: []
+      }
+    ]
+  },
+
+  illustration: {
+    title: "Illustration",
+    color: "#2f6b5e",
+    blurb: "Hand-drawn and vector illustration.",
+    projects: [
+    { title: "Fanzine Chamonix", 
+        oneline: "Fanzine made in the style of a tour guide handbook.",
+        text: "Created in InDesign, Photoshop and Illustrator. Made a Fanzine for a graphical design course with the intention to expand my Adobe Creative Suite knowledge. Images taken in Chamonix by me. Later printed and cut into booklets.", 
+        shape: "tall", 
+        images: ["assets/Illustrations/fanzine_page1","assets/Illustrations/fanzine new_page-0002.jpg", "assets/Illustrations/fanzine new_page-0003.jpg", "assets/Illustrations/fanzine new_page-0004.jpg", "assets/Illustrations/fanzine new_page-0005.jpg", ] 
+    },
+    { title: "Event Material", oneline: "Illustrated posters for student events.", text: "Add your writeup here.", shape: "wide", images: [] },
+    { title: "Personal Work", oneline: "Ongoing drawing and vector work.", text: "Add your writeup here.", shape: "square", images: [] }
+    ]
+  },
+
+  photography: {
+    title: "Photography",
+    color: "#3a4a7c",
+    blurb: "Commissioned photography alongside personal work.",
+    projects: [
+      { title: "Assignments", oneline: "Commissioned shoots.", text: "Add your writeup here.", shape: "wide", images: [] },
+      { title: "Nature", oneline: "Trained under Piotr Malczewski at Galeria Fotografii.", text: "Add your writeup here.", shape: "tall", images: [] },
+      { title: "Events", oneline: "Coverage for Tofsen and student organisations.", text: "Add your writeup here.", shape: "square", images: [] }
+    ]
+  },
+
+  fashion: {
+    title: "Fashion",
+    color: "#a86420",
+    blurb: "Garment construction and pattern work.",
+    projects: [
+      { title: "Bucket Hat", oneline: "The pattern this site is cut from.", text: "Add your writeup here.", shape: "square", images: [] },
+      { title: "Sewing Projects", oneline: "Ongoing garment work.", text: "Add your writeup here.", shape: "tall", images: [] }
+    ]
+  }
+};
+
+/* ---------------- rendering ---------------- */
+
+const RATIO = { tall: 1.38, square: 1.0, wide: 0.68 };
+
+function plate(shape, colour, label) {
+  // placeholder tile until real images are dropped in
+  const h = Math.round(400 * RATIO[shape]);
+  const svg =
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 ${h}'>` +
+    `<rect width='400' height='${h}' fill='${colour}'/>` +
+    `<rect width='400' height='${h}' fill='rgba(0,0,0,.18)'/>` +
+    `<text x='200' y='${h/2}' font-family='Helvetica' font-size='15' fill='rgba(255,255,255,.5)' ` +
+    `text-anchor='middle' letter-spacing='2'>${label}</text></svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
+// column count chosen per image count so the mosaic reads as a tidy grid
+// rather than a lot of empty or overcrowded cells
+function mosaicCols(n) {
+  if (n <= 1) return 1;
+  if (n === 2) return 2;
+  if (n === 4) return 2;
+  return 3;
+}
+
+function mosaicFor(project) {
+  const hasImages = project.images.length > 0;
+  const n = hasImages ? project.images.length : 4;
+  const cols = mosaicCols(n);
+  // if the last row doesn't divide evenly, stretch its final image
+  // across the leftover columns rather than leaving an empty cell —
+  // the mosaic should always fully cover the card. With a single
+  // image (cols=1) this is a no-op: it just fills the whole card.
+  const remainder = n % cols;
+  const lastSpan = remainder === 0 ? 1 : cols - remainder + 1;
+
+  const cells = hasImages
+    ? project.images.map((src, i) => {
+        const span = (i === n - 1 && remainder !== 0) ? lastSpan : 1;
+        return `<img src="${src}" alt="" loading="lazy" style="animation-delay:${i * 55}ms; grid-column: span ${span};">`;
+      }).join('')
+    : Array.from({ length: n }, (_, i) =>
+        `<div style="animation-delay:${i * 55}ms"></div>`).join('');
+  return `<div class="mosaic" style="grid-template-columns:repeat(${cols},1fr)">${cells}</div>`;
+}
+
+function buildCard(project, colour, onClick) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  const img = project.images[0]
+    ? project.images[0]
+    : plate(project.shape, colour, project.title);
+
+  card.innerHTML =
+    `<img class="plate" src="${img}" alt="${project.title}">` +
+    mosaicFor(project) +
+    `<div class="veil"><h3>${project.title}</h3><p>${project.oneline}</p></div>`;
+
+  card.addEventListener('click', () => onClick(project));
+  return card;
+}
+
+/* level 2 */
+const stageCat = document.getElementById('stage-cat');
+function openCategory(key) {
+  const cat = DATA[key];
+  stageCat.style.background = cat.color;
+  document.getElementById('cat-kicker').textContent = 'Category';
+  document.getElementById('cat-title').textContent = cat.title;
+  document.getElementById('cat-blurb').textContent = cat.blurb;
+
+  const grid = document.getElementById('cat-grid');
+  grid.innerHTML = '';
+  cat.projects.forEach(p => {
+    grid.appendChild(buildCard(p, cat.color, proj => openProject(proj, cat)));
+  });
+
+  stageCat.classList.add('open');
+  stageCat.scrollTop = 0;
+}
+
+/* level 3 */
+const stageProj = document.getElementById('stage-proj');
+function openProject(project, cat) {
+  stageProj.style.background = cat.color;
+  document.getElementById('proj-kicker').textContent = cat.title;
+  document.getElementById('proj-title').textContent = project.title;
+  document.getElementById('proj-blurb').textContent = project.text;
+
+  const grid = document.getElementById('proj-grid');
+  grid.innerHTML = '';
+
+  // every image from this project, same masonry layout
+  const shots = project.images.length ? project.images : [null, null, null, null, null];
+  const shapes = ['tall','square','wide','square','tall','wide'];
+  shots.forEach((src, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    const shape = shapes[i % shapes.length];
+    card.innerHTML = `<img class="plate" src="${src || plate(shape, cat.color, project.title + ' ' + (i+1))}" alt="">`;
+    grid.appendChild(card);
+  });
+
+  stageProj.classList.add('open');
+  stageProj.scrollTop = 0;
+}
+
+/* the cutting page calls this when a piece is cut:
+     openCategory('logotypes' | 'illustration' | 'photography' | 'fashion')  */
+window.openCategory = openCategory;
+
+/* closing */
+document.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById(btn.dataset.close).classList.remove('open');
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (stageProj.classList.contains('open')) stageProj.classList.remove('open');
+    else stageCat.classList.remove('open');
+  }
+});
+
+
+  // ---- cutting page ----
+  const resetBtn = document.getElementById('reset');
+
+  // measure each cut path so the line draws itself rather than fading in
+  document.querySelectorAll('.piece .cut').forEach(path => {
+    const len = path.getTotalLength();
+    path.style.setProperty('--len', len);
+  });
+
+  document.querySelectorAll('.piece').forEach(piece => {
+    piece.addEventListener('click', () => {
+      const colour = piece.dataset.color;
+
+      if (!piece.classList.contains('opened')) {
+        piece.classList.add('opened');
+        resetBtn.classList.add('show');
+      }
+      setTimeout(checkComplete, 60);
+
+      // once the piece has lifted, open that category's grid
+      setTimeout(() => {
+        window.openCategory(piece.dataset.cat);
+      }, 520);
+    });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    document.querySelectorAll('.piece.opened').forEach(p => p.classList.remove('opened'));
+    resetBtn.classList.remove('show');
+    checkComplete();
+  });
+
+
+  // ---- sewing sequence ----
+  const sewTrigger = document.getElementById('sew-trigger');
+  const sewStage   = document.getElementById('sew-stage');
+  const sewCaption = document.getElementById('sew-caption');
+  const revealPhoto = document.getElementById('reveal-photo');
+  const flyingHat  = document.getElementById('flying-hat');
+  const aboutCopy  = document.getElementById('about-copy');
+  const sewSvg     = document.getElementById('sew-svg');
+
+  const seams = ['seam-1','seam-2','seam-3'].map(id => document.getElementById(id));
+  seams.forEach(s => {
+    const len = s.getTotalLength();
+    s.style.strokeDasharray = `7 6`;
+    s.dataset.len = len;
+    s.style.opacity = 0;
+  });
+
+  function allCut() {
+    return document.querySelectorAll('.piece.opened').length === document.querySelectorAll('.piece').length;
+  }
+
+  function checkComplete() {
+    sewTrigger.classList.toggle('show', allCut());
+  }
+
+  function runSewing() {
+    sewStage.classList.add('on');
+    revealPhoto.classList.remove('show');
+    flyingHat.classList.remove('landed');
+    aboutCopy.classList.remove('show');
+    sewSvg.style.display = '';
+    seams.forEach(s => s.style.opacity = 0);
+
+    // pieces start scattered, then move into place
+    const scatter = {
+      'sp-brim':    'translate(0px, 150px)',
+      'sp-band':    'translate(-190px, 20px)',
+      'sp-crown-b': 'translate(190px, -30px)',
+      'sp-crown-a': 'translate(0px, -170px)'
+    };
+    Object.entries(scatter).forEach(([id, tf]) => {
+      const el = document.getElementById(id);
+      el.style.transition = 'none';
+      el.style.transform = tf;
+      el.style.opacity = 0;
+    });
+    // force reflow so the scattered position registers before animating
+    sewSvg.getBoundingClientRect();
+
+    setTimeout(() => {
+      sewCaption.textContent = 'Joining the seams';
+      sewCaption.classList.add('show');
+      Object.keys(scatter).forEach(id => {
+        const el = document.getElementById(id);
+        el.style.transition = 'transform 1100ms cubic-bezier(.34,.02,.2,1), opacity 500ms ease';
+        el.style.transform = 'translate(0px, 0px)';
+        el.style.opacity = 1;
+      });
+    }, 250);
+
+    // seams stitch one at a time
+    seams.forEach((s, i) => {
+      setTimeout(() => {
+        s.style.opacity = .9;
+        s.style.strokeDasharray = s.dataset.len;
+        s.style.strokeDashoffset = s.dataset.len;
+        s.getBoundingClientRect();
+        s.style.transition = 'stroke-dashoffset 600ms ease';
+        s.style.strokeDashoffset = 0;
+        setTimeout(() => {
+          s.style.transition = 'none';
+          s.style.strokeDasharray = '7 6';
+          s.style.strokeDashoffset = 0;
+        }, 620);
+      }, 1400 + i * 650);
+    });
+
+    // hat is finished — hand it to the portrait
+    setTimeout(() => {
+      sewCaption.textContent = 'Finished';
+    }, 3500);
+
+    setTimeout(() => {
+      sewCaption.classList.remove('show');
+      sewSvg.style.display = 'none';
+      revealPhoto.classList.add('show');
+    }, 4100);
+
+    setTimeout(() => {
+      flyingHat.classList.remove('landed');
+      flyingHat.getBoundingClientRect();
+      requestAnimationFrame(() => flyingHat.classList.add('landed'));
+    }, 4500);
+
+    setTimeout(() => {
+      aboutCopy.classList.add('show');
+    }, 5300);
+  }
+
+  sewTrigger.addEventListener('click', runSewing);
+
+  document.getElementById('sew-close').addEventListener('click', () => {
+    sewStage.classList.remove('on');
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      sewStage.classList.remove('on');
+    }
+  });
+</script>
+
+</body>
+</html>

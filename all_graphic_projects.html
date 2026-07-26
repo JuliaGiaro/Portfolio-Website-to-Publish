@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giaro Creations</title>
+    <link rel="stylesheet" href="styleallprojects.css">
+    <link rel="stylesheet" href="mediaqueries.css">
+</head>
+    <body>
+        <nav id="desktop-nav">
+            <div class= "logo"><a class= "li" href="graphical-design.html" >Julia Giaro</a></div>
+            <div>
+                <ul class= "nav-links">
+                    <li><a href="graphical-design.html#project_categories">My Work</a> </li>
+                    <li><a href="index.html#about">About</a> </li>
+                    <li><a href="index.html#experience">Experience</a> </li>
+                    <li><a href="index.html#projects">Projects</a> </li>
+                    <li><a href="graphical-design.html">Back </a> </li>
+                    <li><a href="index.html">Back to Frontend</a></li>
+                </ul>
+            </div>
+        </nav>
+        <nav id="hamburger-nav">
+            <div class= "logo"> Julia Giaro</div>
+            <div class="hamburger-menu">
+                <div class= hamburger-icon onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-links">
+                    <li><a href="graphical-design.html#project_categories" onclick="toggleMenu()">My Work</a> </li>
+                    <li><a href="index.html#about" onclick="toggleMenu()">About</a> </li>
+                    <li><a href="index.html#experience" onclick="toggleMenu()">Experience</a> </li>
+                    <li><a href="index.html#projects" onclick="toggleMenu()">Projects</a> </li>
+                    <li><a href="graphical-design.html" onclick="toggleMenu()">Back</a> </li>
+                    <li><a href="index.html" onclick="toggleMenu()">Back to Frontend</a> </li>
+                </div>
+            </div>
+        </nav>
+
+
+
+<section id="illustrations">
+        <h1 class= "title"> Illustration Projects</h1>
+        <div class="project-grid" data-category="illustrations"></div>
+</section>
+
+<section id="logotypes">
+        <h1 class= "title"> Logotypes</h1>
+        <div class="project-grid" data-category="logotypes"></div>
+</section>
+
+<section id="naturephotography">
+    <h1 class= "title"> Nature Photography</h1>
+    <p class="section__text__p1">Coming soon — check back later.</p>
+</section>
+
+<section id="portraitphotography">
+    <h1 class= "title"> Portrait Photography</h1>
+    <p class="section__text__p1">Coming soon — check back later.</p>
+</section>
+
+<section id="posters">
+    <h1 class= "title"> Posters</h1>
+    <div class="project-grid" data-category="posters"></div>
+</section>
+
+<section id="videography">
+    <h1 class= "title"> Videography</h1>
+    <p class="section__text__p1">Coming soon — check back later.</p>
+</section>
+
+<section id="fashion">
+    <h1 class= "title"> Fashion</h1>
+    <div class="project-grid" data-category="fashion"></div>
+</section>
+
+<section id="traditionalcanvasart">
+    <h1 class= "title"> Traditional Canvas Art</h1>
+    <div class="project-grid" data-category="traditionalcanvasart"></div>
+</section>
+
+<script src="script.js"></script>
+<script src="projects-data.js"></script>
+<script src="gallery.js"></script>
+</body>
+</html>

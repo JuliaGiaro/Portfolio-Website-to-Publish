@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giaro Creations</title>
+    <link rel="stylesheet" href="styleallprojects.css">
+    <link rel="stylesheet" href="mediaqueries.css">
+</head>
+    <body>
+        <nav id="desktop-nav">
+            <div class= "logo"><a class= "li" href="graphical-design.html" >Julia Giaro</a></div>
+            <div>
+                <ul class= "nav-links">
+                    <li><a href="graphical-design.html#project_categories">My Work</a> </li>
+                    <li><a href="index.html#about">About</a> </li>
+                    <li><a href="index.html#experience">Experience</a> </li>
+                    <li><a href="index.html#projects">Projects</a> </li>
+                    <li><a href="graphical-design.html">Back </a> </li>
+                    <li><a href="index.html">Back to Frontend</a></li>
+                </ul>
+            </div>
+        </nav>
+        <nav id="hamburger-nav">
+            <div class= "logo"> Julia Giaro</div>
+            <div class="hamburger-menu">
+                <div class= hamburger-icon onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-links">
+                    <li><a href="graphical-design.html#project_categories" onclick="toggleMenu()">My Work</a> </li>
+                    <li><a href="index.html#about" onclick="toggleMenu()">About</a> </li>
+                    <li><a href="index.html#experience" onclick="toggleMenu()">Experience</a> </li>
+                    <li><a href="index.html#projects" onclick="toggleMenu()">Projects</a> </li>
+                    <li><a href="graphical-design.html" onclick="toggleMenu()">Back</a> </li>
+                    <li><a href="index.html" onclick="toggleMenu()">Back to Frontend</a> </li>
+                </div>
+            </div>
+        </nav>
+
+        <section id="project">
+            <main id="project-root" class="project-detail"></main>
+        </section>
+
+        <script src="script.js"></script>
+        <script src="projects-data.js"></script>
+        <script src="project-detail.js"></script>
+    </body>
+    </html>
